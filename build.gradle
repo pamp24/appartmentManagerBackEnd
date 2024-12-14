@@ -18,12 +18,19 @@ repositories {
 }
 
 dependencies {
+	// Spring Boot Web & JPA
+	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation'org.springframework.boot:spring-boot-starter-web'
+
+	// PostgreSQL Driver
 	runtimeOnly 'org.postgresql:postgresql:42.6.0'
-	implementation 'org.springframework.boot:spring-boot-starter'
+
+	// Lombok for reducing boilerplate
+	implementation 'org.projectlombok:lombok:1.18.22'
+	annotationProcessor 'org.projectlombok:lombok:1.18.22'
+
+	// Testing
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 tasks.named('test') {

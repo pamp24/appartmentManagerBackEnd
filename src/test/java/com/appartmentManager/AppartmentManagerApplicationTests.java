@@ -1,4 +1,4 @@
-package com.example.appartmentManager;
+package com.appartmentManager;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
