@@ -16,21 +16,48 @@ java {
 repositories {
 	mavenCentral()
 }
-
 dependencies {
-	// Spring Boot Web & JPA
+	// Spring Boot Web & JPA - for building web applications and interacting with a relational database using JPA
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-	// PostgreSQL Driver
+	// PostgreSQL Driver - used to connect to PostgreSQL database at runtime
 	runtimeOnly 'org.postgresql:postgresql:42.6.0'
 
-	// Lombok for reducing boilerplate
+	// Lombok - used to reduce boilerplate code (e.g., getters, setters, constructors, etc.)
 	implementation 'org.projectlombok:lombok:1.18.22'
 	annotationProcessor 'org.projectlombok:lombok:1.18.22'
 
-	// Testing
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	// Spring Boot Starter Security - provides authentication and authorization for your application
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+
+	// Spring Boot Starter Mail - provides support for sending email from the application
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+
+	// Spring Boot Starter OAuth2 Resource Server - for securing your REST APIs using OAuth2
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+
+	// Spring Boot Starter Thymeleaf - used for rendering views with the Thymeleaf template engine
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+	// Spring Boot Starter Validation - provides support for validation annotations like @NotNull, @Valid, etc.
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	// JWT API - for creating and validating JSON Web Tokens (JWT)
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+
+	// JWT Impl - implementation of JWT encoding and decoding
+	implementation 'io.jsonwebtoken:jjwt-impl:0.11.5'
+
+	// JWT Jackson - integration of Jackson with JWT for JSON parsing
+	implementation 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+	// Springdoc OpenAPI - generates and serves API documentation for Spring Web MVC applications
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0'
+
+	// Testing dependencies
+	testImplementation 'org.springframework.boot:spring-boot-starter-test' // Spring Boot testing support
+	testImplementation 'org.springframework.security:spring-security-test' // Testing Spring Security components
 }
 
 tasks.named('test') {
