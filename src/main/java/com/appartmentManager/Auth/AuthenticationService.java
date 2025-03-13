@@ -1,12 +1,15 @@
 package com.appartmentManager.Auth;
 
 import com.appartmentManager.Email.EmailService;
+import com.appartmentManager.Email.EmailTemplateName;
 import com.appartmentManager.Roles.RoleRepository;
 import com.appartmentManager.User.Token;
 import com.appartmentManager.User.TokenRepository;
 import com.appartmentManager.User.User;
 import com.appartmentManager.User.UserRepository;
+import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +25,10 @@ public class AuthenticationService {
     private final UserRepository userRepository;
     private final TokenRepository tokenRepository;
     private final EmailService emailService;
-    public void register(RegistrationRequest request) {
+    @Value("application.mailing.frontend.activation-url")
+    private String activationUrl;
+
+    public void register(RegistrationRequest request) throws MessagingException {
         var userRole = roleRepository.findByName("USER")
                 //todo - better exception handling
                 .orElseThrow(()-> new IllegalStateException("ROLE USER was not initialized"));
@@ -39,9 +45,17 @@ public class AuthenticationService {
         sendValidationEmail(user);
     }
 
-    private void sendValidationEmail(User user) {
+    private void sendValidationEmail(User user) throws MessagingException {
         var newToken = generateAndSaveActivationToken(user);
 
+        emailService.sendEmail(
+                user.getEmail(),
+                user.fullName(),
+                EmailTemplateName.ACTIVATE_ACCOUNT,
+                activationUrl,
+                newToken,
+                "Account Activation"
+        );
 
     }
 

@@ -84,7 +84,7 @@ public class User implements UserDetails {
         return enable;
     }
 
-    private String FullName(){
+    public String fullName(){
         return firstName + " " + lastName;
     }
 }
