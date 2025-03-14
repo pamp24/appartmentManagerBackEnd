@@ -36,6 +36,6 @@ public class AuthenticationController {
     public void confirm(
             @RequestParam String token
     ) throws MessagingException {
-        authenticationService.activateAcount(token);
+        authenticationService.activateAccount(token);
     }
 }
